@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yanis Achkar · Portfolio</title>
+<meta name="description" content="Portfolio de Yanis Achkar, étudiant en BUT Informatique (parcours AGED) à Toulouse, en recherche de stage de 8 à 12 semaines à partir d'avril 2027.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Yanis Achkar · Portfolio">
+<meta property="og:description" content="Étudiant en BUT Informatique à Toulouse. Bases de données, web et projets perso.">
+<meta property="og:image" content="assets/img/liste-oeuvre.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='28' fill='%23fff' text-anchor='middle'%3EYA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE  sobre et professionnel, pensé pour un recruteur pressé
+   IDEA   une vitrine d'atelier : le travail réel d'abord, en noir et blanc, rien qui ne serve pas
+   PICTURE les vraies captures des projets (ordi + téléphone) en tête, puis une vignette par projet
+   COLOUR blanc pur / noir profond, gris neutres, un seul point vert pour la disponibilité
+   TYPE   Geist pour tout, poids contrastés
+   LAYOUT hero texte + composition d'écrans, projets en grille filtrable, parcours en deux colonnes, contact en bande noire */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0a0a0a);--ink:light-dark(#0a0a0a,#ededed);--mut:light-dark(#5f5f5f,#a3a3a3);--line:light-dark(#e6e6e6,#262626);--card:light-dark(#f6f6f6,#141414);--inv:light-dark(#0a0a0a,#ededed);--invink:light-dark(#ffffff,#0a0a0a);--ok:#16a34a}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Geist,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;line-height:1.08;letter-spacing:-.025em;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--inv);color:var(--invink);padding:8px 14px;border-radius:8px;z-index:20}
+.skip:focus{left:12px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:24px;height:60px}
+.brand{font-weight:600;text-decoration:none;white-space:nowrap}
+.nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.nav a{text-decoration:none;color:var(--mut);padding:8px 10px;border-radius:8px;font-size:15px}
+.nav a:hover{color:var(--ink);background:var(--card)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{font:inherit;font-size:13px;font-weight:600;border:0;background:none;color:var(--mut);padding:5px 10px;border-radius:999px;cursor:pointer;min-height:30px}
+.lang button[aria-pressed=true]{background:var(--inv);color:var(--invink)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;padding-top:clamp(36px,5vw,72px);padding-bottom:clamp(40px,6vw,80px)}
+.me{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.me img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
+.me small{display:block;color:var(--mut);font-size:15px}
+.me b{font-weight:600}
+h1{font-size:clamp(34px,4.3vw,50px);font-weight:700}
+.lead{font-size:18px;color:var(--mut);margin-top:20px;max-width:56ch}
+.lead strong{color:var(--ink);font-weight:500}
+.status{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:15px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px color-mix(in srgb,var(--ok) 22%,transparent)}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:15px;font-weight:500;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--card)}
+.btn.main{background:var(--inv);color:var(--invink);border-color:var(--inv)}
+.btn.main:hover{opacity:.88}
+.btn svg{width:18px;height:18px;flex:none}
+.stage{position:relative;aspect-ratio:16/11}
+.laptop{position:absolute;left:0;top:4%;width:88%;border-radius:12px;border:1px solid var(--line);background:#17181c;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.laptop .bar{height:26px;display:flex;align-items:center;gap:6px;padding:0 10px;background:#22232a}
+.laptop .bar i{width:9px;height:9px;border-radius:50%;background:#4a4b55}
+.phone{position:absolute;right:0;bottom:0;width:30%;aspect-ratio:390/844;border-radius:26px;border:6px solid #0b0b0b;background:#1b2232;overflow:hidden;box-shadow:0 30px 50px -24px rgba(0,0,0,.5)}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top}
+.caption{font-size:13px;color:var(--mut);margin-top:12px;max-width:62ch}
+section{padding-top:clamp(56px,8vw,104px)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+h2{font-size:clamp(30px,3.6vw,40px);font-weight:700}
+.head p{color:var(--mut);margin-top:8px;max-width:60ch}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:14px;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--mut);cursor:pointer}
+.filters button[aria-pressed=true]{background:var(--inv);color:var(--invink);border-color:var(--inv)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.card{display:flex;flex-direction:column;text-align:left;font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;padding:0;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--mut);transform:translateY(-2px)}
+.card.feat{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+.thumb{aspect-ratio:16/10;background:var(--card);overflow:hidden;position:relative;color:var(--ink)}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+.thumb svg{width:100%;height:100%;display:block}
+.feat .thumb{aspect-ratio:auto;min-height:100%}
+.body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.feat .body{padding:32px;justify-content:center;gap:14px}
+.meta{display:flex;justify-content:space-between;gap:12px;color:var(--mut);font-size:14px}
+.card h3{font-size:22px;font-weight:600}
+.feat h3{font-size:30px}
+.card p{color:var(--mut)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.tags span{font-size:13px;padding:3px 10px;border-radius:999px;background:var(--card);border:1px solid var(--line);white-space:nowrap}
+.more{font-size:14px;font-weight:500;display:inline-flex;gap:6px;align-items:center}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+h3.sub{font-size:15px;font-weight:600;color:var(--mut);letter-spacing:0;margin-bottom:8px}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{position:relative;padding:18px 0 18px 26px;border-left:1px solid var(--line)}
+.tl li::before{content:"";position:absolute;left:-5px;top:26px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.tl li.now::before{background:var(--ink)}
+.tl .when{font-size:14px;color:var(--mut);white-space:nowrap}
+.tl strong{display:block;font-size:17px;font-weight:600;margin:2px 0}
+.tl p{color:var(--mut);font-size:15px}
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.box{border:1px solid var(--line);border-radius:16px;padding:22px}
+.box h3{font-size:18px;font-weight:600;margin-bottom:6px}
+.box p{color:var(--mut);font-size:15px;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:14px;padding:5px 11px;border-radius:8px;background:var(--card);white-space:nowrap}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:20px}
+.facts div{border-top:1px solid var(--ink);padding-top:14px}
+.facts b{display:block;font-weight:600;margin-bottom:4px}
+.facts span{color:var(--mut);font-size:15px}
+.contact{margin-top:clamp(56px,8vw,104px);background:var(--inv);color:var(--invink)}
+.contact .wrap{padding-top:clamp(48px,7vw,88px);padding-bottom:clamp(48px,7vw,88px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end}
+.contact h2{font-size:clamp(34px,4.6vw,52px)}
+.contact p{opacity:.72;margin-top:16px;font-size:18px;max-width:46ch}
+.contact .btn{background:transparent;color:var(--invink);border-color:color-mix(in srgb,var(--invink) 30%,transparent)}
+.contact .btn:hover{background:color-mix(in srgb,var(--invink) 10%,transparent)}
+.contact .btn.main{background:var(--invink);color:var(--inv)}
+.mail{font-size:clamp(18px,2.2vw,22px);font-weight:500;overflow-wrap:anywhere;margin-bottom:16px}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+footer{background:var(--inv);color:var(--invink);border-top:1px solid color-mix(in srgb,var(--invink) 15%,transparent)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;padding-bottom:22px;font-size:14px;opacity:.7}
+dialog{width:min(920px,calc(100vw - 24px));max-height:calc(100dvh - 32px);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--bg);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.55);backdrop-filter:blur(3px)}
+.dl{padding:28px 32px 32px}
+dialog .x{position:sticky;top:12px;display:grid;place-items:center;margin:12px 12px -52px auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:22px;cursor:pointer;z-index:2}
+.gal{display:flex;gap:12px;overflow-x:auto;padding:16px 32px 4px;scroll-snap-type:x mandatory}
+.gal figure{margin:0;flex:none;width:min(560px,80%);scroll-snap-align:start}
+.gal figure.tall{width:min(200px,42%)}
+.gal img,.gal .art{border-radius:12px;border:1px solid var(--line);background:var(--card);width:100%}
+.gal .art{aspect-ratio:16/10}
+.gal figcaption{font-size:13px;color:var(--mut);margin-top:6px}
+.dl h3{font-size:30px;font-weight:700;margin:6px 0 10px}
+.dl .lead{margin-top:0;font-size:17px}
+.dl h4{font-size:15px;margin:24px 0 8px}
+.dl ul{margin:0;padding-left:20px}
+.dl li{margin:6px 0;color:var(--mut)}
+.dl li b{color:var(--ink);font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:12px;margin-top:20px}
+.stats div{background:var(--card);border-radius:12px;padding:14px 16px}
+.stats b{display:block;font-size:24px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+.stats span{font-size:14px;color:var(--mut)}
+.dl .cta{margin-top:24px}
+.note{font-size:13px;color:var(--mut);margin-top:16px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:40px}.stage{max-width:620px}.skills{grid-template-columns:repeat(2,minmax(0,1fr))}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.card.feat{grid-template-columns:1fr}.feat .thumb{aspect-ratio:16/10}.feat .body{padding:22px}.contact .wrap{grid-template-columns:1fr}}
+@media(max-width:700px){.nav{display:none}.lang{margin-left:auto}}
+@media(max-width:600px){.grid,.two,.skills{grid-template-columns:1fr}.two{gap:28px}.dl{padding:20px}.gal{padding:16px 20px 4px}.feat h3,.dl h3{font-size:26px}.lead{font-size:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}.card:hover{transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i="skip">Aller au contenu</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Yanis Achkar</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#projets" data-i="nProjects">Projets</a>
+      <a href="#parcours" data-i="nPath">Parcours</a>
+      <a href="#competences" data-i="nSkills">Compétences</a>
+      <a href="#contact" data-i="nContact">Contact</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button type="button" id="lang-fr" aria-pressed="true">FR</button>
+      <button type="button" id="lang-en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap hero">
+    <div>
+      <div class="me">
+        <img src="assets/img/yanis.webp" alt="Photo de Yanis Achkar" width="72" height="72">
+        <div><b>Yanis Achkar</b><small data-i="role">Étudiant en BUT Informatique · Toulouse</small></div>
+      </div>
+      <h1 data-i="h1">Des bases de données propres et des applis web qui servent vraiment.</h1>
+      <p class="lead" data-i="lead" data-html>En 2<sup>e</sup> année de BUT Informatique, parcours <strong>Administration, gestion et exploitation des données</strong> à l'Université Paul Sabatier. J'aime aller du schéma SQL jusqu'à la mise en ligne, et je construis à côté des projets que mes amis utilisent chaque semaine.</p>
+      <div class="status"><i></i><span data-i="status">Recherche de stage · 8 à 12 semaines dès avril 2027</span></div>
+      <div class="cta">
+        <a class="btn main" href="#projets" data-i="seeProjects">Voir mes projets</a>
+        <a class="btn" href="assets/CV_Yanis_Achkar.pdf" download target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg><span data-i="cv">Télécharger mon CV</span></a>
+        <a class="btn" href="https://www.linkedin.com/in/yanis-achkar/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Yanis3412" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div>
+    <div class="stage" aria-hidden="true">
+      <div class="laptop"><div class="bar"><i></i><i></i><i></i></div><img src="assets/img/liste-oeuvre.webp" alt=""></div>
+      <div class="phone"><img src="assets/img/undercover-mobile.webp" alt=""></div>
+    </div>
+      <p class="caption" data-i="stageCap">Liste (suivi manga & anime) et Undercover en ligne, deux projets perso en production.</p>
+    </div>
+  </div>
+
+  <section id="projets" class="wrap">
+    <div class="head">
+      <div><h2 data-i="nProjects">Projets</h2><p data-i="projIntro">Projets personnels et universitaires. Clique sur un projet pour voir le détail, les captures et le code.</p></div>
+      <div class="filters" role="group" aria-label="Filtrer">
+        <button type="button" data-f="all" aria-pressed="true" data-i="fAll">Tous</button>
+        <button type="button" data-f="perso" aria-pressed="false" data-i="fPerso">Personnels</button>
+        <button type="button" data-f="univ" aria-pressed="false" data-i="fUniv">Universitaires</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="parcours" class="wrap">
+    <div class="head"><div><h2 data-i="nPath">Parcours</h2><p data-i="pathIntro">Formation et expériences, de la plus récente à la plus ancienne.</p></div></div>
+    <div class="two">
+      <div>
+        <h3 class="sub" data-i="edu">Formation</h3>
+        <ol class="tl">
+          <li class="now"><span class="when" data-i="e0w">Avril 2027</span><strong data-i="e0t">Stage de fin de 2e année</strong><p data-i="e0p">8 à 12 semaines, durée selon la convention. Je cherche une entreprise en développement, données ou administration système.</p></li>
+          <li class="now"><span class="when" data-i="e1w">2024 – aujourd'hui</span><strong data-i="e1t">BUT Informatique, parcours AGED</strong><p data-i="e1p">Université Paul Sabatier, Toulouse. Administration, gestion et exploitation des données : SQL, modélisation, systèmes Linux, développement.</p></li>
+          <li><span class="when">2022 – 2024</span><strong data-i="e2t">Baccalauréat STI2D, mention Bien</strong><p data-i="e2p">Lycée Jean Jaurès, Saint-Affrique (12). Spécialité Systèmes d'information et numérique (SIN).</p></li>
+        </ol>
+      </div>
+      <div>
+        <h3 class="sub" data-i="exp">Expériences</h3>
+        <ol class="tl">
+          <li><span class="when" data-i="x1w">Août 2025 · 1 mois</span><strong data-i="x1t">Employé polyvalent</strong><p data-i="x1p">Action, Millau (12) · Intérim. Mise en rayon, réassort, accueil des clients.</p></li>
+          <li><span class="when" data-i="x2w">Juillet – août 2024 · 2 mois</span><strong data-i="x2t">Agent d'entretien des locaux</strong><p data-i="x2p">Camping Larribal, Millau (12) · CDD. Travail en autonomie pendant la haute saison.</p></li>
+          <li><span class="when" data-i="x3w">Octobre 2023 · 1 mois</span><strong data-i="x3t">Bénévole aux services techniques</strong><p data-i="x3p">Mairie de Millau (12) · Bénévolat. Appui aux équipes techniques de la ville.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="competences" class="wrap">
+    <div class="head"><div><h2 data-i="nSkills">Compétences</h2><p data-i="skIntro">Ce que j'utilise en cours et dans mes projets.</p></div></div>
+    <div class="skills" id="skills"></div>
+    <div class="facts">
+      <div><b data-i="f1t">Langues</b><span data-i="f1">Français natif · Anglais B1/B2</span></div>
+      <div><b data-i="f2t">Mobilité</b><span data-i="f2">Permis B et véhicule personnel · Ramonville-Saint-Agne (31)</span></div>
+      <div><b data-i="f3t">Sport</b><span data-i="f3">6 ans de basket en club (SOM Basket Millau), escalade de bloc à Toulouse</span></div>
+      <div><b data-i="f4t">À côté</b><span data-i="f4">Culture manga et anime, voyages en Europe de l'Est et en Afrique du Nord, streams sur Twitch</span></div>
+    </div>
+  </section>
+</main>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div>
+      <h2 data-i="cTitle">Un stage à proposer ? Parlons-en.</h2>
+      <p data-i="cText">Je suis disponible dès début avril 2027 pour 8 à 12 semaines. Je réponds vite par mail et sur LinkedIn.</p>
+    </div>
+    <div>
+      <p class="mail">yanis.ack06@gmail.com</p>
+      <div class="links">
+        <a class="btn main" href="mailto:yanis.ack06@gmail.com" data-i="cMail">M'écrire</a>
+        <button type="button" class="btn" id="copy" data-i="cCopy">Copier l'adresse</button>
+        <a class="btn" href="https://www.linkedin.com/in/yanis-achkar/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Yanis3412" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="assets/CV_Yanis_Achkar.pdf" download target="_blank" rel="noopener" data-i="cv">Télécharger mon CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span>© 2026 Yanis Achkar · Toulouse, France</span><span data-i="foot">Site fait à la main en HTML, CSS et JavaScript</span></div></footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title"><button type="button" class="x" id="dlg-x" aria-label="Fermer">×</button><div id="dlg-body"></div></dialog>
+
+<script>
+{
+const T={
+fr:{skip:"Aller au contenu",nProjects:"Projets",nPath:"Parcours",nSkills:"Compétences",nContact:"Contact",role:"Étudiant en BUT Informatique · Toulouse",h1:"Des bases de données propres et des applis web qui servent vraiment.",lead:"En 2<sup>e</sup> année de BUT Informatique, parcours <strong>Administration, gestion et exploitation des données</strong> à l'Université Paul Sabatier. J'aime aller du schéma SQL jusqu'à la mise en ligne, et je construis à côté des projets que mes amis utilisent chaque semaine.",status:"Recherche de stage · 8 à 12 semaines dès avril 2027",seeProjects:"Voir mes projets",cv:"Télécharger mon CV",stageCap:"Liste (suivi manga & anime) et Undercover en ligne, deux projets perso en production.",projIntro:"Projets personnels et universitaires. Clique sur un projet pour voir le détail, les captures et le code.",fAll:"Tous",fPerso:"Personnels",fUniv:"Universitaires",pathIntro:"Formation et expériences, de la plus récente à la plus ancienne.",edu:"Formation",exp:"Expériences",e0w:"Avril 2027",e0t:"Stage de fin de 2e année",e0p:"8 à 12 semaines, durée selon la convention. Je cherche une entreprise en développement, données ou administration système.",e1w:"2024 – aujourd'hui",e1t:"BUT Informatique, parcours AGED",e1p:"Université Paul Sabatier, Toulouse. Administration, gestion et exploitation des données : SQL, modélisation, systèmes Linux, développement.",e2t:"Baccalauréat STI2D, mention Bien",e2p:"Lycée Jean Jaurès, Saint-Affrique (12). Spécialité Systèmes d'information et numérique (SIN).",x1w:"Août 2025 · 1 mois",x1t:"Employé polyvalent",x1p:"Action, Millau (12) · Intérim. Mise en rayon, réassort, accueil des clients.",x2w:"Juillet – août 2024 · 2 mois",x2t:"Agent d'entretien des locaux",x2p:"Camping Larribal, Millau (12) · CDD. Travail en autonomie pendant la haute saison.",x3w:"Octobre 2023 · 1 mois",x3t:"Bénévole aux services techniques",x3p:"Mairie de Millau (12) · Bénévolat. Appui aux équipes techniques de la ville.",skIntro:"Ce que j'utilise en cours et dans mes projets.",f1t:"Langues",f1:"Français natif · Anglais B1/B2",f2t:"Mobilité",f2:"Permis B et véhicule personnel · Ramonville-Saint-Agne (31)",f3t:"Sport",f3:"6 ans de basket en club (SOM Basket Millau), escalade de bloc à Toulouse",f4t:"À côté",f4:"Culture manga et anime, voyages en Europe de l'Est et en Afrique du Nord, streams sur Twitch",cTitle:"Un stage à proposer ? Parlons-en.",cText:"Je suis disponible dès début avril 2027 pour 8 à 12 semaines. Je réponds vite par mail et sur LinkedIn.",cMail:"M'écrire",cCopy:"Copier l'adresse",copied:"Adresse copiée",foot:"Site fait à la main en HTML, CSS et JavaScript",details:"Voir le détail",did:"Ce que j'ai fait",stack:"Technologies",close:"Fermer",perso:"Projet perso",univ:"Projet universitaire",featured:"Projet phare"},
+en:{skip:"Skip to content",nProjects:"Projects",nPath:"Background",nSkills:"Skills",nContact:"Contact",role:"Computer science student (BUT) · Toulouse",h1:"Clean databases and web apps people actually use.",lead:"Second-year student in a Computer Science BUT, <strong>Data administration and management</strong> track, at Université Paul Sabatier. I like taking a project from the SQL schema all the way to production, and on the side I build apps my friends use every week.",status:"Looking for an internship · 8 to 12 weeks from April 2027",seeProjects:"See my projects",cv:"Download my CV",stageCap:"Liste (manga & anime tracker) and Undercover online, two personal projects in production.",projIntro:"Personal and university projects. Click a project to see details, screenshots and code.",fAll:"All",fPerso:"Personal",fUniv:"University",pathIntro:"Education and experience, most recent first.",edu:"Education",exp:"Experience",e0w:"April 2027",e0t:"End-of-second-year internship",e0p:"8 to 12 weeks, length set by the internship agreement. Looking for a company in development, data or system administration.",e1w:"2024 – present",e1t:"BUT in Computer Science, AGED track",e1p:"Université Paul Sabatier, Toulouse. Data administration, management and operations: SQL, modelling, Linux systems, development.",e2t:"STI2D Baccalauréat, with honours",e2p:"Lycée Jean Jaurès, Saint-Affrique (France). Information systems and digital technology (SIN) specialty.",x1w:"August 2025 · 1 month",x1t:"Store assistant",x1p:"Action, Millau · Temporary work. Shelf stocking, restocking, customer service.",x2w:"July – August 2024 · 2 months",x2t:"Facilities cleaning staff",x2p:"Camping Larribal, Millau · Fixed-term contract. Worked independently during peak season.",x3w:"October 2023 · 1 month",x3t:"Volunteer, technical services",x3p:"Millau town hall · Volunteering. Supported the town's technical teams.",skIntro:"What I use in class and in my projects.",f1t:"Languages",f1:"French (native) · English B1/B2",f2t:"Mobility",f2:"Driving licence and own car · Ramonville-Saint-Agne, near Toulouse",f3t:"Sport",f3:"6 years of club basketball (SOM Basket Millau), bouldering in Toulouse",f4t:"Outside class",f4:"Manga and anime, travel in Eastern Europe and North Africa, streaming on Twitch",cTitle:"Have an internship to offer? Let's talk.",cText:"I'm available from early April 2027 for 8 to 12 weeks. I reply quickly by email and on LinkedIn.",cMail:"Email me",cCopy:"Copy address",copied:"Address copied",foot:"Hand-built with HTML, CSS and JavaScript",details:"See details",did:"What I did",stack:"Tech stack",close:"Close",perso:"Personal project",univ:"University project",featured:"Featured project"}};
+
+const I="assets/img/";
+const svg=(body)=>`<svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" font-family="Geist,system-ui,sans-serif">${body}</svg>`;
+const ART={
+roblox:()=>{const g=L=="fr"?["Quiz","Qui pourrait…","BombParty","Undercover","Spyfall","Course de frappe"]:["Quiz","Who could…","BombParty","Undercover","Spyfall","Typing race"];let s=`<rect width="640" height="400" fill="var(--card)"/><text x="40" y="58" font-size="22" font-weight="700" fill="var(--ink)">${L=="fr"?"Hub · mini-jeux":"Hub · mini-games"}</text><text x="600" y="58" font-size="15" fill="var(--mut)" text-anchor="end">${L=="fr"?"6 jeux au lancement":"6 games at launch"}</text>`;g.forEach((n,i)=>{const x=40+(i%3)*190,y=88+Math.floor(i/3)*150;s+=`<rect x="${x}" y="${y}" width="174" height="134" rx="14" fill="var(--bg)" stroke="var(--line)" stroke-width="2"/><rect x="${x+16}" y="${y+16}" width="40" height="40" rx="10" fill="${i==3?'var(--ink)':'var(--line)'}"/><text x="${x+36}" y="${y+43}" font-size="18" font-weight="700" fill="${i==3?'var(--bg)':'var(--ink)'}" text-anchor="middle">${i+1}</text><text x="${x+16}" y="${y+92}" font-size="17" font-weight="600" fill="var(--ink)">${n}</text><text x="${x+16}" y="${y+116}" font-size="13" fill="var(--mut)">${L=="fr"?"Mini-jeu":"Mini-game"} ${i+1}</text>`});return svg(s)},
+cdleague:()=>{const rd=L=="fr"?"Prêt":"Ready",r=[["Top",.72,"3:36"],["Jungle",0,rd],["Mid",.38,"1:54"],["ADC",.9,"4:30"],["Support",0,rd]];let s=`<rect width="640" height="400" fill="#0f1115"/><text x="40" y="60" font-size="22" font-weight="700" fill="#f2f2f2">cdLeague</text><text x="600" y="60" font-size="15" fill="#9a9a9a" text-anchor="end">${L=="fr"?"Sorts adverses":"Enemy spells"}</text>`;r.forEach(([n,p,t],i)=>{const cx=84+i*118,cy=210,R=42,C=2*Math.PI*R;s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="#1a1d23" stroke="#2c3038" stroke-width="6"/>${p?`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#f2f2f2" stroke-width="6" stroke-dasharray="${C*p} ${C}" transform="rotate(-90 ${cx} ${cy})" stroke-linecap="round"/>`:''}<text x="${cx}" y="${cy+6}" font-size="${p?18:15}" font-weight="700" fill="${p?'#f2f2f2':'#4ade80'}" text-anchor="middle">${t}</text><text x="${cx}" y="${cy+82}" font-size="15" fill="#9a9a9a" text-anchor="middle">${n}</text>`});s+=`<text x="40" y="360" font-size="14" fill="#6b6b6b">${L=="fr"?"Un clic par sort lance le compte à rebours":"One click per spell starts the countdown"}</text>`;return svg(s)},
+twitch:()=>{const sc=L=="fr"?[["Début du stream",0],["En jeu",1],["Pause",0],["Fin du stream",0]]:[["Starting soon",0],["In game",1],["Be right back",0],["Thanks for watching",0]];let s=`<rect width="640" height="400" fill="#0e0e10"/>`;sc.forEach(([n,cam],i)=>{const x=28+(i%2)*302,y=24+Math.floor(i/2)*184;s+=`<rect x="${x}" y="${y}" width="282" height="164" rx="10" fill="#1b1b1f" stroke="#2e2e35"/>`;if(cam){s+=`<rect x="${x+12}" y="${y+12}" width="258" height="140" rx="6" fill="#26262c"/><rect x="${x+186}" y="${y+92}" width="76" height="52" rx="6" fill="#0e0e10" stroke="#f2f2f2" stroke-width="2"/><text x="${x+224}" y="${y+123}" font-size="12" fill="#cfcfcf" text-anchor="middle">cam</text>`}else{s+=`<text x="${x+141}" y="${y+84}" font-size="20" font-weight="700" fill="#f2f2f2" text-anchor="middle">${n}</text><rect x="${x+91}" y="${y+102}" width="100" height="4" rx="2" fill="#f2f2f2"/>`}s+=`<text x="${x+12}" y="${y+156}" font-size="12" fill="#8a8a8a">${cam?n:'aohac'}</text>`});return svg(s)},
+bdd:()=>{const t=[[40,70,"CLIENT",["id_client PK","nom","email"]],[240,170,"COMMANDE",["id_commande PK","id_client FK","date"]],[440,70,"PRODUIT",["id_produit PK","libelle","prix"]],[440,250,"LIGNE",["id_commande FK","id_produit FK","quantite"]]];let s=`<rect width="640" height="400" fill="var(--card)"/><path d="M200 120 H220 V220 H240 M400 220 H420 V300 H440 M520 168 V250" fill="none" stroke="var(--mut)" stroke-width="2"/>`;t.forEach(([x,y,n,c])=>{s+=`<rect x="${x}" y="${y}" width="160" height="${34+c.length*26}" rx="10" fill="var(--bg)" stroke="var(--ink)" stroke-width="2"/><text x="${x+14}" y="${y+23}" font-size="14" font-weight="700" fill="var(--ink)">${n}</text><line x1="${x}" x2="${x+160}" y1="${y+34}" y2="${y+34}" stroke="var(--line)" stroke-width="2"/>`;c.forEach((k,j)=>{s+=`<text x="${x+14}" y="${y+55+j*26}" font-size="13" fill="${/K$/.test(k)?'var(--ink)':'var(--mut)'}" font-weight="${/PK$/.test(k)?700:400}">${k}</text>`})});return svg(s)},
+linux:()=>{const l=[["$ ","sudo useradd -m -G equipe alice"],["$ ","sudo systemctl status ssh"],["  ","● ssh.service  active (running)"],["$ ","./sauvegarde.sh /home"],["  ","[ok] 3 dossiers archivés"],["$ ","crontab -l"],["  ","0 2 * * *  /opt/scripts/sauvegarde.sh"]];let s=`<rect width="640" height="400" fill="#0c0c0c"/><rect x="0" y="0" width="640" height="40" fill="#1c1c1c"/><circle cx="24" cy="20" r="6" fill="#3a3a3a"/><circle cx="44" cy="20" r="6" fill="#3a3a3a"/><circle cx="64" cy="20" r="6" fill="#3a3a3a"/><text x="320" y="25" font-size="13" fill="#8a8a8a" text-anchor="middle">admin@serveur: ~</text>`;l.forEach(([p,c],i)=>{s+=`<text x="28" y="${84+i*38}" font-size="16" font-family="ui-monospace,Menlo,Consolas,monospace"><tspan fill="#8a8a8a">${p}</tspan><tspan fill="${p.trim()?'#f2f2f2':'#9fd8a8'}">${c}</tspan></text>`});return svg(s)}
+};
+
+const P=[
+{id:"liste",kind:"perso",feat:1,year:"2025 – 2026",img:I+"liste-oeuvre.webp",bg:"#17181c",
+title:{fr:"Liste · suivi manga & anime",en:"Liste · manga & anime tracker"},
+sum:{fr:"Application web pour suivre ses mangas et animes entre amis, avec liseuse de chapitres et colorisation par IA. Utilisée par mon groupe d'amis au quotidien.",en:"Web app to track manga and anime with friends, with a chapter reader and AI colourisation. Used daily by my group of friends."},
+tags:["React","Vite","Vercel Functions","Redis","Cloudflare R2","Python","PWA"],
+stats:[["11",{fr:"routes API serverless",en:"serverless API routes"}],["≈ 8 000",{fr:"lignes de JS / JSX",en:"lines of JS / JSX"}],["2",{fr:"API externes (AniList, MyAnimeList)",en:"external APIs (AniList, MyAnimeList)"}],["v2",{fr:"refonte complète en 2026",en:"full rebuild in 2026"}]],
+pts:{fr:["<b>Profils sécurisés</b> : code haché (scrypt), sessions de 60 jours, blocage de 15 minutes après 8 essais, rôle administrateur et mode lecture seule.","<b>Données des œuvres</b> récupérées via les API d'AniList et de MyAnimeList : couvertures, chapitres, saisons, prochaines sorties.","<b>Liseuse de chapitres</b> : import CBZ, ZIP, PDF ou images, envoi direct du navigateur vers Cloudflare R2 par URL signées, conversion PNG en WebP, lecture page par page ou en défilement.","<b>Découpage automatique</b> des captures de page entière en planches, avec un éditeur pour ajuster les coupures.","<b>Colorisation par IA</b> : file d'attente côté API, traitée par un programme Python sur PC Windows (GPU NVIDIA ou processeur), avec installeur.","<b>Synchronisation</b> entre appareils avec numéro de version pour éviter les écrasements, migration automatique depuis la v1, export/import JSON, installable sur téléphone, thème clair et sombre."],en:["<b>Secure profiles</b>: hashed PIN (scrypt), 60-day sessions, 15-minute lockout after 8 failed attempts, admin role and read-only mode.","<b>Title data</b> pulled from the AniList and MyAnimeList APIs: covers, chapters, seasons, upcoming releases.","<b>Chapter reader</b>: CBZ, ZIP, PDF or image import, direct browser-to-Cloudflare R2 uploads with signed URLs, PNG to WebP conversion, paged or scrolling reading.","<b>Automatic slicing</b> of full-page screenshots into panels, with an editor to adjust the cuts.","<b>AI colourisation</b>: job queue in the API, processed by a Python worker on a Windows PC (NVIDIA GPU or CPU), with an installer.","<b>Sync</b> across devices with versioning to prevent overwrites, automatic migration from v1, JSON export/import, installable on phones, light and dark themes."]},
+links:[["https://liste-blue.vercel.app/",{fr:"Voir le site",en:"Open the site"},1],["https://github.com/Yanis3412/siteanime",{fr:"Voir le code",en:"View the code"}]],
+gal:[[I+"liste-oeuvre.webp",{fr:"Fiche d'une œuvre et section chapitres",en:"Title page and chapters section"}],[I+"liste-animes.webp",{fr:"Bibliothèque des animes",en:"Anime library"}],[I+"liste-reco.webp",{fr:"Recommandations entre profils",en:"Recommendations between profiles"}],[I+"liste-mobile.webp",{fr:"Version mobile",en:"Mobile version"},1]],
+note:{fr:"Captures prises avec des données de test ; les couvertures sont remplacées par des visuels neutres.",en:"Screenshots taken with test data; covers replaced with neutral placeholders."}},
+{id:"undercover",kind:"perso",year:"2026",img:I+"undercover-partie-large.webp",bg:"#1b2232",
+title:{fr:"Undercover en ligne",en:"Undercover online"},
+sum:{fr:"Le jeu d'ambiance Undercover en multijoueur temps réel, chacun sur son téléphone.",en:"The Undercover party game in real-time multiplayer, everyone on their own phone."},
+tags:["Node.js","Express","Socket.IO","JavaScript","HTML / CSS"],
+stats:[["1 216",{fr:"paires de mots",en:"word pairs"}],["16",{fr:"avatars dessinés en SVG",en:"hand-drawn SVG avatars"}],["3",{fr:"niveaux : Normal, Hard, Mixte",en:"levels: Normal, Hard, Mixed"}]],
+pts:{fr:["<b>Salons privés</b> avec code à 4 lettres et lien d'invitation, reconnexion automatique si un joueur perd le réseau.","<b>Toute la logique sur le serveur</b> (Node.js + Socket.IO) : distribution des rôles, tours d'indices, votes, élimination, fin de partie.","<b>Réglages de l'hôte</b> : nombre d'undercovers, Mr. White, 1 à 3 indices par manche, difficulté des mots, exclusion d'un joueur.","<b>Mr. White</b> dispose de 60 secondes pour deviner le mot des civils quand il est éliminé.","<b>Interface mobile d'abord</b>, sans framework : HTML, CSS et JavaScript côté client."],en:["<b>Private rooms</b> with a 4-letter code and invite link, automatic reconnection if a player drops.","<b>All game logic on the server</b> (Node.js + Socket.IO): role assignment, clue rounds, votes, elimination, end of game.","<b>Host settings</b>: number of undercovers, Mr. White, 1 to 3 clues per round, word difficulty, kicking a player.","<b>Mr. White</b> gets 60 seconds to guess the civilians' word when eliminated.","<b>Mobile-first UI</b> with no framework: plain HTML, CSS and JavaScript on the client."]},
+links:[["https://github.com/Yanis3412/undercover",{fr:"Voir le code",en:"View the code"},1]],
+gal:[[I+"undercover-partie-large.webp",{fr:"Partie en cours : le mot et le tour d'indices",en:"Game in progress: word and clue round"}],[I+"undercover-salon-large.webp",{fr:"Salon et réglages de l'hôte",en:"Lobby and host settings"}],[I+"undercover-mobile.webp",{fr:"Accueil sur téléphone",en:"Home screen on phone"},1]]},
+{id:"roblox",kind:"perso",year:"2026",art:"roblox",
+title:{fr:"Hub de mini-jeux Roblox",en:"Roblox mini-games hub"},
+sum:{fr:"Une expérience Roblox qui regroupe des jeux de soirée : Quiz, BombParty, Undercover, Spyfall…",en:"A Roblox experience that brings party games together: Quiz, BombParty, Undercover, Spyfall…"},
+tags:["Luau","Roblox Studio","Rojo","Git"],
+stats:[["6",{fr:"jeux prévus au lancement",en:"games planned at launch"}]],
+pts:{fr:["<b>Conception et programmation</b> de mécaniques de jeu interactives et de l'architecture réseau client / serveur.","<b>Code modulaire</b> : chaque mini-jeu se branche sur un socle commun, ce qui permet d'en ajouter sans toucher aux autres.","<b>Workflow pro</b> : code écrit hors de Roblox Studio et synchronisé avec Rojo, versionné avec Git.","Jeux du lancement : Quiz, Qui pourrait…, BombParty, Undercover, Spyfall, Course de frappe. D'autres suivront en mises à jour."],en:["<b>Design and programming</b> of interactive game mechanics and the client/server network architecture.","<b>Modular code</b>: each mini-game plugs into a shared core, so new ones can be added without touching the others.","<b>Pro workflow</b>: code written outside Roblox Studio and synced with Rojo, versioned with Git.","Launch games: Quiz, Who could…, BombParty, Undercover, Spyfall, Typing race. More will come in updates."]},
+status:{fr:"En développement",en:"In development"}},
+{id:"cdleague",kind:"perso",year:"2026",art:"cdleague",
+title:{fr:"cdLeague",en:"cdLeague"},
+sum:{fr:"Overlay pour League of Legends qui chronomètre les sorts d'invocateur des adversaires.",en:"A League of Legends overlay that times the enemy team's summoner spells."},
+tags:["Overlay","Outil desktop","League of Legends"],
+pts:{fr:["<b>Un clic par sort</b> lance le compte à rebours du sort utilisé par l'adversaire, visible par-dessus le jeu.","<b>Objectif en cours</b> : récupérer automatiquement les sorts adverses dès l'écran de chargement, pour n'avoir plus qu'à cliquer en partie.","Né d'un besoin concret en jouant : un outil simple, utilisé par moi et mes amis."],en:["<b>One click per spell</b> starts the countdown for the spell the enemy just used, shown on top of the game.","<b>Work in progress</b>: automatically fetch enemy spells from the loading screen, so the only thing left in game is clicking.","Born from a real need while playing: a simple tool used by me and my friends."]},
+status:{fr:"En cours",en:"In progress"}},
+{id:"twitch",kind:"perso",year:"2026",art:"twitch",
+title:{fr:"Pack d'overlays Twitch",en:"Twitch overlay pack"},
+sum:{fr:"Les scènes de ma chaîne Twitch, intégrées dans OBS : début, en jeu avec caméra, pause et fin.",en:"The scenes for my Twitch channel, set up in OBS: starting, in-game with camera, break and ending."},
+tags:["OBS Studio","HTML / CSS","Design"],
+pts:{fr:["<b>Cinq scènes cohérentes</b> : début du stream, caméra, jeu, pause (BRB) et fin.","<b>Intégration dans OBS</b> sous forme de sources navigateur et d'images, pour des changements de scène propres.","Direction visuelle inspirée d'un pack thématique, adaptée à ma chaîne <b>aohac</b>."],en:["<b>Five consistent scenes</b>: starting soon, camera, game, be right back and ending.","<b>Set up in OBS</b> as browser and image sources, for clean scene transitions.","Visual direction inspired by a themed pack, adapted to my channel <b>aohac</b>."]},
+links:[["https://www.twitch.tv/aohac",{fr:"Ma chaîne Twitch",en:"My Twitch channel"}]]},
+{id:"bdd",kind:"univ",year:{fr:"Février – mars 2026",en:"Feb – Mar 2026"},art:"bdd",
+title:{fr:"Conception d'une base de données relationnelle",en:"Relational database design"},
+sum:{fr:"De la modélisation UML jusqu'aux requêtes complexes, sous PostgreSQL et Oracle SQL.",en:"From UML modelling to complex queries, on PostgreSQL and Oracle SQL."},
+tags:["PostgreSQL","Oracle SQL","UML","SQL"],
+pts:{fr:["<b>Modélisation conceptuelle et logique</b> : diagramme de classes UML, schéma relationnel, clés et contraintes d'intégrité.","<b>Implémentation</b> sous PostgreSQL et Oracle SQL, avec jeux de données de test.","<b>Requêtes complexes</b> : jointures, agrégats, sous-requêtes, vues, et optimisation des requêtes les plus coûteuses."],en:["<b>Conceptual and logical modelling</b>: UML class diagram, relational schema, keys and integrity constraints.","<b>Implementation</b> on PostgreSQL and Oracle SQL, with test data sets.","<b>Complex queries</b>: joins, aggregates, subqueries, views, and optimising the most expensive queries."]},
+note:{fr:"Schéma illustratif : le sujet réel du projet n'est pas reproduit ici.",en:"Illustrative schema: the actual project subject is not reproduced here."}},
+{id:"linux",kind:"univ",year:{fr:"Septembre 2025",en:"Sept 2025"},art:"linux",
+title:{fr:"Déploiement d'un serveur Linux",en:"Linux server deployment"},
+sum:{fr:"Configuration et administration d'un environnement Linux en équipe, automatisé en Bash.",en:"Setting up and administering a Linux environment as a team, automated with Bash."},
+tags:["Linux","Bash","Réseau","Travail en équipe"],
+pts:{fr:["<b>Configuration du serveur</b> et des services réseau.","<b>Automatisation</b> des tâches récurrentes avec des scripts Shell / Bash.","<b>Sécurisation des accès</b> : comptes, groupes et droits des utilisateurs.","Projet mené <b>en équipe</b>, avec répartition des tâches."],en:["<b>Server and network services</b> configuration.","<b>Automation</b> of recurring tasks with Shell / Bash scripts.","<b>Access security</b>: user accounts, groups and permissions.","<b>Team project</b> with shared responsibilities."]},
+note:{fr:"Terminal illustratif.",en:"Illustrative terminal."}}
+];
+
+const SK=[
+{t:{fr:"Données",en:"Data"},d:{fr:"Le cœur de mon parcours AGED.",en:"The core of my AGED track."},c:["SQL","PostgreSQL","Oracle SQL","Modélisation UML","Optimisation de requêtes","Redis"]},
+{t:{fr:"Langages",en:"Languages"},d:{fr:"Vus en cours et en projets.",en:"Used in class and in projects."},c:["JavaScript","Python","PHP","C","Kotlin","Bash","Luau"]},
+{t:{fr:"Web",en:"Web"},d:{fr:"Du front jusqu'aux API.",en:"From front end to APIs."},c:["HTML5 / CSS3","React","Vite","Node.js","Express","Socket.IO","API REST"]},
+{t:{fr:"Systèmes & cloud",en:"Systems & cloud"},d:{fr:"Pour déployer et faire tourner.",en:"To deploy and keep things running."},c:["Linux","Shell Bash","Vercel","Cloudflare R2","VirtualBox"]},
+{t:{fr:"Outils",en:"Tools"},d:{fr:"Au quotidien.",en:"Every day."},c:["Git / GitHub","VS Code","Oracle SQL Developer","Roblox Studio","Rojo","OBS Studio"]},
+{t:{fr:"IA générative",en:"Generative AI"},d:{fr:"Utilisée pour aller plus vite, en relisant ce qui est produit.",en:"Used to move faster, reviewing what it produces."},c:["Claude","ChatGPT","Gemini","Copilot","Cursor","Codex"]}
+];
+
+let L="fr";try{const s=localStorage.getItem("lang");if(s==="en"||s==="fr")L=s;else if((navigator.language||"").slice(0,2)!=="fr")L="en"}catch(e){}
+let F="all";
+const tr=(v)=>v&&typeof v==="object"&&!Array.isArray(v)?v[L]:v;
+const grid=document.getElementById("grid"),dlg=document.getElementById("dlg"),db=document.getElementById("dlg-body");
+const thumb=(p)=>p.img?`<img src="${p.img}" alt="" loading="lazy">`:ART[p.art]();
+
+function renderGrid(){
+  grid.innerHTML=P.filter(p=>F==="all"||p.kind===F).map(p=>`<button type="button" class="card${p.feat&&F!=="univ"?" feat":""}" data-id="${p.id}">
+    <div class="thumb" style="${p.bg?`background:${p.bg}`:""}">${thumb(p)}</div>
+    <div class="body"><div class="meta"><span>${p.feat?T[L].featured:T[L][p.kind]}${p.status?` · ${tr(p.status)}`:""}</span><span>${tr(p.year)}</span></div>
+    <h3>${tr(p.title)}</h3><p>${tr(p.sum)}</p>
+    <div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join("")}</div>
+    <span class="more">${T[L].details} →</span></div></button>`).join("");
+}
+function renderSkills(){
+  document.getElementById("skills").innerHTML=SK.map(s=>`<div class="box"><h3>${tr(s.t)}</h3><p>${tr(s.d)}</p><div class="chips">${s.c.map(c=>`<span>${c}</span>`).join("")}</div></div>`).join("");
+}
+function openP(id){
+  const p=P.find(x=>x.id===id);if(!p)return;
+  const gal=p.gal?p.gal.map(([src,c,tall])=>`<figure class="${tall?"tall":""}"><img src="${src}" alt="${tr(c)}" loading="lazy"><figcaption>${tr(c)}</figcaption></figure>`).join(""):`<figure><div class="art">${ART[p.art]()}</div></figure>`;
+  db.innerHTML=`<div class="gal">${gal}</div><div class="dl">
+    <div class="meta"><span>${T[L][p.kind]}${p.status?` · ${tr(p.status)}`:""}</span><span>${tr(p.year)}</span></div>
+    <h3 id="dlg-title">${tr(p.title)}</h3><p class="lead">${tr(p.sum)}</p>
+    ${p.stats?`<div class="stats">${p.stats.map(([v,l])=>`<div><b>${v}</b><span>${tr(l)}</span></div>`).join("")}</div>`:""}
+    <h4>${T[L].did}</h4><ul>${tr(p.pts).map(x=>`<li>${x}</li>`).join("")}</ul>
+    <h4>${T[L].stack}</h4><div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join("")}</div>
+    ${p.links?`<div class="cta">${p.links.map(([h,l,m])=>`<a class="btn${m?" main":""}" href="${h}" target="_blank" rel="noopener">${tr(l)} ↗</a>`).join("")}</div>`:""}
+    ${p.note?`<p class="note">${tr(p.note)}</p>`:""}</div>`;
+  document.getElementById("dlg-x").setAttribute("aria-label",T[L].close);
+  if(typeof dlg.showModal==="function")dlg.showModal();else dlg.setAttribute("open","");
+  dlg.scrollTop=0;
+}
+function setLang(l){
+  L=l;document.documentElement.lang=l;
+  try{localStorage.setItem("lang",l)}catch(e){}
+  document.querySelectorAll("[data-i]").forEach(el=>{const v=T[l][el.dataset.i];if(v==null)return;if(el.hasAttribute("data-html"))el.innerHTML=v;else el.textContent=v});
+  document.getElementById("lang-fr").setAttribute("aria-pressed",l==="fr");
+  document.getElementById("lang-en").setAttribute("aria-pressed",l==="en");
+  document.querySelector(".me img").alt=l==="fr"?"Photo de Yanis Achkar":"Photo of Yanis Achkar";
+  renderGrid();renderSkills();
+}
+grid.addEventListener("click",e=>{const c=e.target.closest(".card");if(c)openP(c.dataset.id)});
+document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{F=b.dataset.f;document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed",x===b));renderGrid()}));
+document.getElementById("dlg-x").addEventListener("click",()=>dlg.close());
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+document.getElementById("lang-fr").addEventListener("click",()=>setLang("fr"));
+document.getElementById("lang-en").addEventListener("click",()=>setLang("en"));
+const cp=document.getElementById("copy");
+cp.addEventListener("click",async()=>{try{await navigator.clipboard.writeText("yanis.ack06@gmail.com");cp.textContent=T[L].copied;setTimeout(()=>cp.textContent=T[L].cCopy,2000)}catch(e){cp.textContent="yanis.ack06@gmail.com"}});
+setLang(L);
+}
+</script>
+</body>
+</html>
