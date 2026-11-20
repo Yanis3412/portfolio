@@ -137,6 +137,8 @@ dialog .x{position:sticky;top:12px;display:grid;place-items:center;margin:12px 1
 .gal figure{margin:0;flex:none;width:min(560px,80%);scroll-snap-align:start}
 .gal figure.tall{width:min(200px,42%)}
 .gal figure.small{width:min(380px,80%)}
+.gal figure.vid{width:min(290px,62%)}
+.gal video{display:block;width:100%;aspect-ratio:720/1040;border-radius:12px;border:1px solid var(--line);background:#1b2232}
 .thumb.fit2 img{object-fit:scale-down;object-position:center}
 .ch{display:grid;gap:10px}
 .ch>div{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
@@ -294,7 +296,7 @@ pts:{fr:["<b>Salons privés</b> avec code à 4 lettres et lien d'invitation, rec
 ch:{fr:[["Empêcher la triche : un joueur ne doit pas pouvoir lire le mot des autres dans son navigateur.","Le serveur garde toute la partie et n'envoie à chaque joueur que son propre mot ; les mots des autres ne sont révélés qu'à la fin."],["Sur téléphone, la connexion coupe souvent (écran verrouillé, réseau mobile).","Chaque joueur reçoit un jeton : en revenant, il reprend sa place dans la partie au lieu d'en être exclu."]],en:[["Preventing cheating: a player must not be able to read other players' words in their browser.","The server holds the whole game and sends each player only their own word; the others are revealed at the end."],["On phones the connection drops often (locked screen, mobile network).","Each player gets a token: when they come back, they take their seat again instead of being kicked out."]]},
 links:[["https://undercover-0wax.onrender.com",{fr:"Jouer en ligne",en:"Play online"},1],["https://github.com/Yanis3412/undercover",{fr:"Voir le code",en:"View the code"}]],
 note:{fr:"Hébergé sur l'offre gratuite de Render : au premier accès, le serveur peut mettre jusqu'à une minute à se réveiller.",en:"Hosted on Render's free tier: on first visit, the server can take up to a minute to wake up."},
-gal:[[I+"undercover-accueil.webp",{fr:"Accueil : choix de l'avatar et du salon",en:"Home: avatar and room selection"},1],[I+"undercover-partie-large.webp",{fr:"Partie en cours : le mot et le tour d'indices",en:"Game in progress: word and clue round"}],[I+"undercover-salon-large.webp",{fr:"Salon et réglages de l'hôte",en:"Lobby and host settings"}],[I+"undercover-mobile.webp",{fr:"Accueil sur téléphone",en:"Home screen on phone"},1]]},
+gal:[["assets/undercover-demo.mp4",{fr:"Une partie complète à 4 joueurs, vue par l'hôte",en:"A full 4-player game, seen by the host"},"v"],[I+"undercover-accueil.webp",{fr:"Accueil : choix de l'avatar et du salon",en:"Home: avatar and room selection"},1],[I+"undercover-partie-large.webp",{fr:"Partie en cours : le mot et le tour d'indices",en:"Game in progress: word and clue round"}],[I+"undercover-salon-large.webp",{fr:"Salon et réglages de l'hôte",en:"Lobby and host settings"}],[I+"undercover-mobile.webp",{fr:"Accueil sur téléphone",en:"Home screen on phone"},1]]},
 {id:"roblox",kind:"perso",year:"2026",img:I+"roblox-vote.webp",bg:"#3a4256",
 title:{fr:"Hub de mini-jeux Roblox",en:"Roblox mini-games hub"},
 sum:{fr:"Une expérience Roblox qui regroupe des jeux de soirée : Quiz, BombParty, Undercover, Spyfall… Encore en cours de production.",en:"A Roblox experience that brings party games together: Quiz, BombParty, Undercover, Spyfall… Still in production."},
@@ -357,7 +359,7 @@ function renderSkills(){
 }
 function openP(id){
   const p=P.find(x=>x.id===id);if(!p)return;
-  const gal=p.gal?p.gal.map(([src,c,tall])=>`<figure class="${tall===2?"small":tall?"tall":""}"><img src="${src}" alt="${tr(c)}" loading="lazy"><figcaption>${tr(c)}</figcaption></figure>`).join(""):`<figure><div class="art">${ART[p.art]()}</div></figure>`;
+  const gal=p.gal?p.gal.map(([src,c,tall])=>tall==="v"?`<figure class="vid"><video src="${src}" poster="${I}undercover-demo-poster.webp" autoplay muted loop playsinline aria-label="${tr(c)}"></video><figcaption>${tr(c)}</figcaption></figure>`:`<figure class="${tall===2?"small":tall?"tall":""}"><img src="${src}" alt="${tr(c)}" loading="lazy"><figcaption>${tr(c)}</figcaption></figure>`).join(""):`<figure><div class="art">${ART[p.art]()}</div></figure>`;
   db.innerHTML=`<div class="gal">${gal}</div><div class="dl">
     <div class="meta"><span>${T[L][p.kind]}${p.status?` · ${tr(p.status)}`:""}</span><span>${tr(p.year)}</span></div>
     <h3 id="dlg-title">${tr(p.title)}</h3><p class="lead">${tr(p.sum)}</p>
